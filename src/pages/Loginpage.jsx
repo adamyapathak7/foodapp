@@ -1,64 +1,55 @@
+import React, { useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+const Login = () => {
+  let emailRef = useRef();
+  let passwordRef = useRef();
 
-const Loginpage = () => {
-let navigate= useNavigate()
-const[namevalue,setnamevalue]=useState("");
-const[emailvalue,setemailvalue]=useState("");
-const[passwordvalue,setpasswordvalue]=useState("");
-const[addressvalue,setaddressvalue]=useState("");
-const namechanger=(e)=>{
-let name=e.target.value 
-console.log(name)
-setnamevalue(name)
- }
- const emailchanger=(e)=>{
-    let email=e.target.value 
-    console.log(email)
-    setnamevalue(email)
-     }
-     const passwordchanger=(e)=>{
-        let password=e.target.value 
-        console.log(password)
-        setnamevalue(password)
-         }
-         const addresschanger=(e)=>{
-            let address=e.target.value 
-            console.log(address)
-            setnamevalue(address)
-             }
-             const handleSubmit=(e)=>{
-                e.preventDefault()
-                console.log(handleSubmit)
-                navigate('/home')
-                let obj={
-                 name:namevalue,
-                 email:emailvalue,
-                 password:passwordvalue,
-                 address:addressvalue
-                }
-            }
+  let navigate = useNavigate()
+
+  let arr = JSON.parse(localStorage.getItem('signup')) || [] 
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    let obj={
+      email:emailRef.current.value,
+      password:passwordRef.current.value
+    }
+    console.log(obj)
+
+    let userExists = arr.find((ele)=>ele.email===obj.email)
+    if(userExists){
+      if(userExists.password ===obj.password){
+        alert('login successfull')
+          navigate('/home')
+      }
+    }
+    else{
+      alert('please sign up')
+    }
+  }
   return (
-    <div>
-      <form className='login'>
-        <label htmlFor="">Name:-
-            <input type='text' onChange={namechanger}></input>
-        </label>
-        <label htmlFor="">E-mail:-
-            <input type='text' onChange={emailchanger}></input>
-        </label>
-        <label htmlFor="">Password:-
-            <input type='password' onChange={passwordchanger}></input>
-        </label>
-        <label htmlFor="">Address:-
-            <textarea type='text' onChange={addresschanger}></textarea>
-        </label>
-        <button onClick={handleSubmit} style={{backgroundColor:"green", border:"radius",width:"20rem"}}>Submit
-       </button>
-      </form>
+    <div className='authPage'>
+    <form className='col-md-6 m-auto p-3'>
+  <h3 className='text-center'>Login form</h3>
+
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+    <input ref={emailRef} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+   
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+    <input ref={passwordRef} type="password" className="form-control" id="exampleInputPassword1" />
+  </div>
+
+  <div className='text-center'>
+  <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+  </div>
+  <p className='text-center mt-2'>Don't have an account? <Link to="/register">Signup</Link></p>
+</form>
     </div>
   )
 }
 
-export default Loginpage
+export default Login

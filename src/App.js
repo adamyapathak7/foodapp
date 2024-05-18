@@ -6,13 +6,15 @@ import Shop from './pages/Shop';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Loginpage from './pages/Loginpage';
 import SingleRecipe from './pages/SingleRecipe';
+import Signup from './pages/Signup';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Loginpage />} />
+        <Route path='/' element={<Signup />} />
+          <Route path='/login' element={<Loginpage />} />
           <Route path='/home' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/shop' element={<Shop />} />
