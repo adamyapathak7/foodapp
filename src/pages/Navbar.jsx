@@ -16,7 +16,7 @@
           <Link className="nav-link active" aria-current="page" to="/">Sign Up</Link>
         </li>
       <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">Login Form</Link>
+          <Link className="nav-link active" aria-current="page" to="/login">Login Form</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/home">Home</Link>
@@ -24,9 +24,7 @@
         <li className="nav-item">
           <Link className="nav-link" to="/about">About</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/shop">Shop</Link>
-        </li>
+        
 
       </ul>
     </div>

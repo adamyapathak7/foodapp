@@ -34,8 +34,8 @@ const Signup = () => {
   
   }
   return (
-    <div className='authPage'>
- <form className='col-md-6 m-auto p-3'>
+    <div className='authPage '>
+ <form className='col-md-6 m-auto p-3 '>
   <h3 className='text-center'>Signup form</h3>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
